@@ -1,0 +1,16 @@
+{
+    "name": "jgizycki/instantgallery",
+    "description": "component that displays a given folder as image gallery",
+    "require": {
+        "twig/twig": "^1.24",
+        "intervention/image": "^2.3"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Josha von Gizycki",
+            "email": "mail@joshavg.de"
+        }
+    ],
+    "minimum-stability": "alpha"
+}

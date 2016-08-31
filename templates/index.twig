@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Galerie</title>
+        <link rel="stylesheet" href="templates/style.css">
+    </head>
+    <body>
+        {% set dir = constant('IMAGE_DIR') %}
+        {% set dirlength = dir|length %}
+        <ol class="dirs">
+            <li>
+                <a href="index.php">Start</a>
+            </li>
+            {% for dir in dirs if dir.realPath|slice(dirlength)|length > 0 %}
+                <li>
+                    <a href="index.php?dirix={{ loop.index0 }}">
+                        {{ dir.realPath|slice(dirlength + 1) }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ol>
+        <div class="content {% block contentclass %}{% endblock %}">
+            {% block content %}
+                {% for file in files %}
+                    <div class="thumb">
+                        <a href="index.php?action=show&dirix={{ dirix }}&filix={{ loop.index0 }}">
+                            <img src="index.php?action=pipeThumbnail&dirix={{ dirix }}&filix={{ loop.index0 }}">
+                        </a>
+                    </div>
+                {% endfor %}
+            {% endblock %}
+        </div>
+    </body>
+</html>

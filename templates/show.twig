@@ -1,0 +1,23 @@
+{% extends 'index.twig' %}
+
+{% block contentclass %}show{% endblock %}
+
+{% block content %}
+        {% if prev %}
+            <a href="index.php?action=show&dirix={{ dirix }}&filix={{ filix - 1}}" class="prev">
+                Vor
+            </a>
+        {% else %}
+            <div class="prev"></div>
+        {% endif %}
+        
+        <img src="index.php?action=pipeImage&dirix={{ dirix }}&filix={{ filix }}" class="image">
+        
+        {% if next %}
+            <a href="index.php?action=show&dirix={{ dirix }}&filix={{ filix + 1}}" class="next">
+                Weiter
+            </a>
+        {% else %}
+            <div class="next"></div>
+        {% endif %}
+{% endblock %}
