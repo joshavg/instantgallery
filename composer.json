@@ -1,6 +1,7 @@
 {
     "name": "jgizycki/instantgallery",
     "description": "component that displays a given folder as image gallery",
+    "license": "GPL-3.0",
     "require": {
         "twig/twig": "^1.24",
         "intervention/image": "^2.3"
