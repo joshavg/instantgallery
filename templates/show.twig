@@ -1,23 +1,23 @@
 {% extends 'index.twig' %}
 
-{% block contentclass %}show{% endblock %}
+{% block nav %}
+    <div class="list-group">
+        <a class="list-group-item{% if not prev %} disabled{% endif %}"
+           href="{%if prev %}index.php?action=show&dirix={{ dirix }}&filix={{ filix - 1}}{% endif %}">
+            Vor
+        </a>
+        <a class="list-group-item{% if not next %} disabled{% endif %}"
+           href="{% if next %}index.php?action=show&dirix={{ dirix }}&filix={{ filix + 1}}{% endif %}">
+            Weiter
+        </a>
+    </div>
+    {{ parent() }}
+{% endblock %}
 
 {% block content %}
-        {% if prev %}
-            <a href="index.php?action=show&dirix={{ dirix }}&filix={{ filix - 1}}" class="prev">
-                Vor
-            </a>
-        {% else %}
-            <div class="prev"></div>
-        {% endif %}
-        
-        <img src="index.php?action=pipeImage&dirix={{ dirix }}&filix={{ filix }}" class="image">
-        
-        {% if next %}
-            <a href="index.php?action=show&dirix={{ dirix }}&filix={{ filix + 1}}" class="next">
-                Weiter
-            </a>
-        {% else %}
-            <div class="next"></div>
-        {% endif %}
+        <div class="col-md-10">
+            {% if next %}<a href="index.php?action=show&dirix={{ dirix }}&filix={{ filix + 1}}">{% endif %}
+            <img class="img-responsive" src="index.php?action=pipeImage&dirix={{ dirix }}&filix={{ filix }}">
+            {% if next %}</a>{% endif %}
+        </div>
 {% endblock %}

@@ -35,25 +35,32 @@ function pipeImage() {
 }
 
 function pipeThumbnail() {
-    $manager = new ImageManager(array('driver' => 'imagick'));
-    
     $file = getFile();
     $thumbname = 'cache' . DS . md5($file->getFilename());
     
     if(THUMB_GENERATION && !file_exists($thumbname)) {
+        $manager = new ImageManager(array('driver' => 'imagick'));
+        
         $img = $manager->make($file->getRealPath());    
         $img->resize(THUMB_SIZE_MAX_WIDTH, THUMB_SIZE_MAX_HEIGHT, function($constraint) {
             $constraint->aspectRatio();
             $constraint->upsize();
         });
         $img->save($thumbname, THUMB_QUALITY);
-        $file = $thumbname;
-    } else if(file_exists($thumbname)) {
-        $file = $thumbname;
+
+        echo $img->response('jpg', THUMB_QUALITY);
+    } else {
+        if(file_exists($thumbname)) {
+            $file = $thumbname;
+        } else {
+            $file = $file->getRealPath();
+        }
+        
+        $handle = fopen($file, 'rb');
+        header('Content-Type: image/jpg');
+        header('Content-Length: ' . filesize($thumbname));
+        fpassthru($handle);
     }
-    
-    $img = $manager->make($file);
-    echo $img->response('jpg', THUMB_QUALITY);
 }
 
 function show() {

@@ -1,16 +1,8 @@
-* {
-    font-family: sans-serif;
-}
-
 body {
-    display: flex;
-    justify-content: space-around;
+    padding-top: 1em;
 }
 
-.dirs {
-}
-
-.content {
+.thumb-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -18,23 +10,5 @@ body {
 }
 
 .thumb {
-    margin: 1em;
-}
-
-.show {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: nowrap;
-}
-
-.prev, .next {
-    width: 5em;
-    text-align: center;
-    flex-grow: 1;
-}
-
-.image {
-    max-width: 80%;
-    flex-grow: 10;
+    margin: .5em;
 }
